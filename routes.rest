@@ -1,0 +1,65 @@
+// LOCALHOST
+###
+GET http://localhost:8080/users
+###
+GET http://localhost:8080/users/652b4bfdd850dd2dcb7be7ee
+
+### Create contact
+POST http://localhost:8080/users HTTP/1.1
+content-type: application/json
+
+{
+    "email":"tesla@test.com",
+    "firstName":"Nikolai",
+    "lastName":"Tesla",
+    "userName":"nikoTesla",
+    "password":"teslatower"
+}
+
+### Update contact
+PUT http://localhost:8080/users/[replace with id] HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "darwinism@test.com",
+    "firstName": "Charles",
+    "lastName": "Darwin",
+    "userName": "charlesDarwin",
+    "password": "theoryofevolution"
+}
+
+### Delete contact
+DELETE http://localhost:8080/users/[replace with id] HTTP/1.1
+
+// PRODUCTION Deploy
+###
+GET https://personal-project-fdrz.onrender.com/users
+###
+GET https://personal-project-fdrz.onrender.com/users/652b4bfdd850dd2dcb7be7ee
+
+### Create contact
+POST https://personal-project-fdrz.onrender.com/users HTTP/1.1
+content-type: application/json
+
+{
+    "email":"tesla@test.com",
+    "firstName":"Nikolai",
+    "lastName":"Tesla",
+    "userName":"nikoTesla",
+    "password":"teslatower"
+}
+
+### Update contact
+PUT https://personal-project-fdrz.onrender.com/users/[replace with id] HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "darwinism@test.com",
+    "firstName": "Charles",
+    "lastName": "Darwin",
+    "userName": "charlesDarwin",
+    "password": "theoryofevolution"
+}
+
+### Delete contact
+DELETE https://personal-project-fdrz.onrender.com/users/[replace id] HTTP/1.1
