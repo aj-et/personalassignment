@@ -1,4 +1,5 @@
 const { client, ObjectId } = require('../db/mongodb');
+const bcrypt = require('bcrypt');
 
 const db = client.db('user'); // Database name
 const collection = db.collection('userInfo'); // Collection name
@@ -35,7 +36,7 @@ const createUser = async (req, res) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         userName: req.body.userName,
-        password: req.body.password
+        password: await bcrypt.hash(req.body.password, 10)
     };
 
     try {
