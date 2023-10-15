@@ -61,7 +61,7 @@ const updateUser = async (req, res) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         userName: req.body.userName,
-        password: req.body.password
+        password: await bcrypt.hash(req.body.password, 10)
     };
 
     try {
