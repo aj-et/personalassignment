@@ -1,0 +1,7 @@
+How would the data look like:
+
+Create Account
+    Username
+    Password
+    Email
+    Birthday
