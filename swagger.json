@@ -5,22 +5,12 @@
     "description": "Users API",
     "version": "1.0.0"
   },
-  "host": "localhost://8080",
+  "host": "personal-project-fdrz.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
     "/users/": {
       "get": {
         "description": "",

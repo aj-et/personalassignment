@@ -5,8 +5,8 @@ const doc = {
         title: 'Personal Project API',
         description: 'Users API',
     },
-    host: 'localhost://8080',
-    schemes: ['http'],
+    host: 'personal-project-fdrz.onrender.com',
+    schemes: ['https'],
 };
 
 const outputFile = './swagger.json';
