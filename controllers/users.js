@@ -42,8 +42,8 @@ const createUser = async (req, res) => {
     try {
         const result = await collection.insertOne(user);
         if (result) {
-            console.log(user._id)
-            res.status(201).json({ message: 'User created successfully' });
+            // console.log(user._id)
+            res.status(201).json({ _id: user._id, message: 'User created successfully' });
         } else {
             res.status(500).send('Error creating user');
         }
