@@ -7,9 +7,8 @@ const collection = db.collection('userInfo'); // Collection name
 const dotenv = require('dotenv')
 dotenv.config();
 
-const APIkey = process.env.API_KEY;
-
 const validateApiKey = (req, res) => {
+    const APIkey = process.env.API_KEY;
     const apiKey = req.header('apiKey');
 
     if (apiKey !== APIkey) {
