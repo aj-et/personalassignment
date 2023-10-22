@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Personal Project API",
-    "description": "Users API",
+    "description": "Users API; API key: 2S5Q2TZunlQ87JhGi5AFPfsFY9L6lUw9A6BwSfbbEAWrpcv0t2EBldxTmza1Q3mLOpHXKZBxLsGDBVAxHQRvIf0tTFD1N4qR37lOnJoyUnTXR9C3cl8xPPZBaevufqfj",
     "version": "1.0.0"
   },
   "host": "personal-project-fdrz.onrender.com",
@@ -25,6 +25,9 @@
           "200": {
             "description": "OK"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -33,6 +36,11 @@
       "post": {
         "description": "",
         "parameters": [
+          {
+            "name": "apiKey",
+            "in": "header",
+            "type": "string"
+          },
           {
             "name": "body",
             "in": "body",
@@ -62,6 +70,9 @@
           "201": {
             "description": "Created"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -77,11 +88,19 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
@@ -98,6 +117,11 @@
             "name": "id",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
             "type": "string"
           },
           {
@@ -129,6 +153,9 @@
           "204": {
             "description": "No Content"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -145,11 +172,19 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
