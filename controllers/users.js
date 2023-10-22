@@ -4,8 +4,18 @@ const bcrypt = require('bcrypt');
 const db = client.db('user'); // Database name
 const collection = db.collection('userInfo'); // Collection name
 
+const dotenv = require('dotenv')
+dotenv.config();
+
+const API_KEY = process.env.API_KEY;
+
 const getAll = async (req, res) => {
-    console.log(req.header('apiKey'));
+    const apiKey = req.header('apiKey');
+
+    if (apiKey !== API_KEY) {
+        return res.status(401).json({ error: 'Please enter a valid API key.' });
+    }
+
     try {
         const user = await collection.find({}).toArray();
         res.json(user);
