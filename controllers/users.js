@@ -12,17 +12,18 @@ const API_KEY = process.env.API_KEY;
 const getAll = async (req, res) => {
     const apiKey = req.header('apiKey');
 
-    if (apiKey !== API_KEY) {
+    if (apiKey === API_KEY) {
+        try {
+            const user = await collection.find({}).toArray();
+            res.json(user);
+        } catch (error) {
+            console.error('Error retrieving contacts:', error);
+            res.status(500).send('Internal Server Error');
+        }
+    } else {
         return res.status(401).json({ error: 'Please enter a valid API key.' });
     }
 
-    try {
-        const user = await collection.find({}).toArray();
-        res.json(user);
-    } catch (error) {
-        console.error('Error retrieving contacts:', error);
-        res.status(500).send('Internal Server Error');
-    }
 }
 
 const getSingle = async (req, res) => {
