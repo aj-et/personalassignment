@@ -7,26 +7,31 @@ const collection = db.collection('userInfo'); // Collection name
 const dotenv = require('dotenv')
 dotenv.config();
 
-const API_KEY = process.env.API_KEY;
+const APIkey = 'f4634ed1-0b7f-43a4-b6bd-52633bdcf698';
 
-const getAll = async (req, res) => {
+const validateApiKey = (req, res) => {
     const apiKey = req.header('apiKey');
 
-    if (apiKey === API_KEY) {
-        try {
-            const user = await collection.find({}).toArray();
-            res.json(user);
-        } catch (error) {
-            console.error('Error retrieving contacts:', error);
-            res.status(500).send('Internal Server Error');
-        }
-    } else {
+    if (apiKey !== APIkey) {
         return res.status(401).json({ error: 'Please enter a valid API key.' });
     }
+}
 
+const getAll = async (req, res) => {
+    validateApiKey(req, res);
+
+    try {
+        const user = await collection.find({}).toArray();
+        res.json(user);
+    } catch (error) {
+        console.error('Error retrieving contacts:', error);
+        res.status(500).send('Internal Server Error');
+    }
 }
 
 const getSingle = async (req, res) => {
+    validateApiKey(req, res);
+
     const userId = req.params.id;
     try {
         const user = await collection.findOne({ _id: new ObjectId(userId) })
@@ -42,6 +47,8 @@ const getSingle = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
+    validateApiKey(req, res);
+
     const user = {
         email: req.body.email,
         firstName: req.body.firstName,
@@ -65,6 +72,8 @@ const createUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
+    validateApiKey(req, res);
+
     const userId = new ObjectId(req.params.id); // Assuming the user ID is passed in the URL
     
     const user = {
@@ -92,6 +101,8 @@ const updateUser = async (req, res) => {
 }
 
 const deleteUser = async (req, res) => {
+    validateApiKey(req, res);
+
     const userId = req.params.id; // Assuming the user ID is passed in the URL
 
     try {
