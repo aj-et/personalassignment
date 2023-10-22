@@ -34,15 +34,6 @@
         "description": "",
         "parameters": [
           {
-            "parameters": [
-              {
-                "name": "apiKey",
-                "in": "header",
-                "type": "string"
-              }
-            ]
-          },
-          {
             "name": "body",
             "in": "body",
             "schema": {
@@ -82,15 +73,6 @@
         "description": "",
         "parameters": [
           {
-            "parameters": [
-              {
-                "name": "apiKey",
-                "in": "header",
-                "type": "string"
-              }
-            ]
-          },
-          {
             "name": "id",
             "in": "path",
             "required": true,
@@ -112,15 +94,6 @@
       "put": {
         "description": "",
         "parameters": [
-          {
-            "parameters": [
-              {
-                "name": "apiKey",
-                "in": "header",
-                "type": "string"
-              }
-            ]
-          },
           {
             "name": "id",
             "in": "path",
@@ -167,15 +140,6 @@
       "delete": {
         "description": "",
         "parameters": [
-          {
-            "parameters": [
-              {
-                "name": "apiKey",
-                "in": "header",
-                "type": "string"
-              }
-            ]
-          },
           {
             "name": "id",
             "in": "path",

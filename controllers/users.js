@@ -4,21 +4,8 @@ const bcrypt = require('bcrypt');
 const db = client.db('user'); // Database name
 const collection = db.collection('userInfo'); // Collection name
 
-const dotenv = require('dotenv')
-dotenv.config();
-
-const validateApiKey = (req, res) => {
-    const APIkey = process.env.API_KEY;
-    const apiKey = req.header('apiKey');
-
-    if (apiKey !== APIkey) {
-        return res.status(401).json({ error: 'Please enter a valid API key.' });
-    }
-}
-
 const getAll = async (req, res) => {
-    validateApiKey(req, res);
-
+    console.log(req.header('apiKey'));
     try {
         const user = await collection.find({}).toArray();
         res.json(user);
@@ -29,8 +16,6 @@ const getAll = async (req, res) => {
 }
 
 const getSingle = async (req, res) => {
-    validateApiKey(req, res);
-
     const userId = req.params.id;
     try {
         const user = await collection.findOne({ _id: new ObjectId(userId) })
@@ -46,8 +31,6 @@ const getSingle = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
-    validateApiKey(req, res);
-
     const user = {
         email: req.body.email,
         firstName: req.body.firstName,
@@ -71,8 +54,6 @@ const createUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
-    validateApiKey(req, res);
-
     const userId = new ObjectId(req.params.id); // Assuming the user ID is passed in the URL
     
     const user = {
@@ -100,8 +81,6 @@ const updateUser = async (req, res) => {
 }
 
 const deleteUser = async (req, res) => {
-    validateApiKey(req, res);
-
     const userId = req.params.id; // Assuming the user ID is passed in the URL
 
     try {
