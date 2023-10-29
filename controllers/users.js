@@ -10,16 +10,21 @@ const db = client.db('user'); // Database name
 const collection = db.collection('userInfo'); // Collection name
 
 const getAll = async (req, res) => {
-    if (req.header('apiKey') === apiKey) {
-        try {
-            const user = await collection.find({}).toArray();
-            res.json(user);
-        } catch (error) {
-            console.error('Error retrieving contacts:', error);
-            res.status(500).send('Internal Server Error');
+    const user = req.user;
+    if (user) {
+        if (req.header('apiKey') === apiKey) {
+            try {
+                const user = await collection.find({}).toArray();
+                res.json(user);
+            } catch (error) {
+                console.error('Error retrieving contacts:', error);
+                res.status(500).send('Internal Server Error');
+            }
+        } else {
+            res.status(401).send('Please enter a valid API key.')
         }
     } else {
-        res.status(401).send('Please enter a valid API key.')
+        res.status(401).send('User is not authorized.')
     }
 }
 
