@@ -8,21 +8,9 @@ router.get('/', usersController.getAll);
 
 router.get('/:id', usersController.getSingle);
 
-router.post('/', [
-    check('email').isEmail(),
-    check('firstName').notEmpty(),
-    check('lastName').notEmpty(),
-    check('userName').notEmpty(),
-    check('password').isLength({ min: 6 })
-], usersController.createUser);
+router.post('/', usersController.createUser);
 
-router.put('/:id', [
-    check('email').isEmail(),
-    check('firstName').notEmpty(),
-    check('lastName').notEmpty(),
-    check('userName').notEmpty(),
-    check('password').isLength({ min: 6 })
-], usersController.updateUser);
+router.put('/:id', usersController.updateUser);
 
 router.delete('/:id', usersController.deleteUser);
 

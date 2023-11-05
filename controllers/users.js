@@ -51,7 +51,13 @@ const createUser = async (req, res) => {
         userName: req.body.userName,
         password: await bcrypt.hash(req.body.password, 10)
     };
-    const validaton_error = validationResult(req);
+    const validaton_error = validationResult([
+        check('email').isEmail(),
+        check('firstName').notEmpty(),
+        check('lastName').notEmpty(),
+        check('userName').notEmpty(),
+        check('password').isLength({ min: 6 })
+    ]);
 
     if (!validaton_error.isEmpty()) {
         return res.status(400).json({ errors: validaton_error.array() });
@@ -78,7 +84,13 @@ const createUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const userId = new ObjectId(req.params.id); // Assuming the user ID is passed in the URL
-    const validaton_error = validationResult(req);
+    const validaton_error = validationResult([
+        check('email').isEmail(),
+        check('firstName').notEmpty(),
+        check('lastName').notEmpty(),
+        check('userName').notEmpty(),
+        check('password').isLength({ min: 6 })
+    ]);
     
     const user = {
         email: req.body.email,
