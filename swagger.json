@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Personal Project API",
-    "description": "Users API and API key: 22e7b161-dd4d-4085-9288-72870062ffc6",
+    "description": "Users API and API Key: 22e7b161-dd4d-4085-9288-72870062ffc6",
     "version": "1.0.0"
   },
   "host": "personal-project-fdrz.onrender.com",
