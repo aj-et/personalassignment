@@ -54,7 +54,7 @@ const createUser = async (req, res) => {
     const validaton_error = validationResult(req);
 
     if (!validaton_error.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({ errors: validaton_error.array() });
     }
 
     if (req.header('apiKey') === apiKey) {
@@ -89,7 +89,7 @@ const updateUser = async (req, res) => {
     };
 
     if (!validaton_error.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({ errors: validaton_error.array() });
     }
 
     if (req.header('apiKey') === apiKey) {
