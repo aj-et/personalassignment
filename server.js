@@ -28,6 +28,14 @@ app.use('/users', require('./routes/users'));
 
 app.use('/auth', require('./routes/auth'));
 
+app.get('/register', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+});
+
+app.get('/login', (req, res) => {
+    res.sendFile(__dirname + '/public/login.html');
+});
+
 mongodb.run()
 
 app.listen(port, () => {
