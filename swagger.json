@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Personal Project API",
-    "description": "API key: 2S5Q2TZunlQ87JhGi5AFPfsFY9L6lUw9A6BwSfbbEAWrpcv0t2EBldxTmza1Q3mLOpHXKZBxLsGDBVAxHQRvIf0tTFD1N4qR37lOnJoyUnTXR9C3cl8xPPZBaevufqfj",
+    "description": "Users API and API key: 22e7b161-dd4d-4085-9288-72870062ffc6",
     "version": "1.0.0"
   },
   "host": "personal-project-fdrz.onrender.com",
@@ -13,7 +13,7 @@
   "paths": {
     "/users/": {
       "get": {
-        "description": "This will get all of the users in the database.",
+        "description": "",
         "parameters": [
           {
             "name": "apiKey",
@@ -34,7 +34,7 @@
         }
       },
       "post": {
-        "description": "This will create a user and add the details to the database.",
+        "description": "",
         "parameters": [
           {
             "name": "apiKey",
@@ -70,6 +70,9 @@
           "201": {
             "description": "Created"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "401": {
             "description": "Unauthorized"
           },
@@ -81,7 +84,7 @@
     },
     "/users/{id}": {
       "get": {
-        "description": "This will get a user with the matching ID in the database.",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -111,7 +114,7 @@
         }
       },
       "put": {
-        "description": "This will update the details of the selected user with the same ID in the database.",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -153,6 +156,9 @@
           "204": {
             "description": "No Content"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "401": {
             "description": "Unauthorized"
           },
@@ -165,7 +171,7 @@
         }
       },
       "delete": {
-        "description": "This will delete the user with matching ID from the database.",
+        "description": "",
         "parameters": [
           {
             "name": "id",

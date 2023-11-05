@@ -1,5 +1,6 @@
 const { client, ObjectId } = require('../db/mongodb');
 const bcrypt = require('bcrypt');
+const { validationResult } = require('express-validator');
 
 const dotenv = require('dotenv')
 dotenv.config();
@@ -10,21 +11,16 @@ const db = client.db('user'); // Database name
 const collection = db.collection('userInfo'); // Collection name
 
 const getAll = async (req, res) => {
-    const user = req.user;
-    if (user) {
-        if (req.header('apiKey') === apiKey) {
-            try {
-                const user = await collection.find({}).toArray();
-                res.json(user);
-            } catch (error) {
-                console.error('Error retrieving contacts:', error);
-                res.status(500).send('Internal Server Error');
-            }
-        } else {
-            res.status(401).send('Please enter a valid API key.')
+    if (req.header('apiKey') === apiKey) {
+        try {
+            const user = await collection.find({}).toArray();
+            res.json(user);
+        } catch (error) {
+            console.error('Error retrieving contacts:', error);
+            res.status(500).send('Internal Server Error');
         }
     } else {
-        res.status(401).send('User is not authorized.')
+        res.status(401).send('Please enter a valid API key.')
     }
 }
 
@@ -55,6 +51,11 @@ const createUser = async (req, res) => {
         userName: req.body.userName,
         password: await bcrypt.hash(req.body.password, 10)
     };
+    const validaton_error = validationResult(req);
+
+    if (!validaton_error.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
 
     if (req.header('apiKey') === apiKey) {
         try {
@@ -77,6 +78,7 @@ const createUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const userId = new ObjectId(req.params.id); // Assuming the user ID is passed in the URL
+    const validaton_error = validationResult(req);
     
     const user = {
         email: req.body.email,
@@ -85,6 +87,10 @@ const updateUser = async (req, res) => {
         userName: req.body.userName,
         password: await bcrypt.hash(req.body.password, 10)
     };
+
+    if (!validaton_error.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
 
     if (req.header('apiKey') === apiKey) {
         try {
